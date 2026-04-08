@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DragonSword: Awakening — Press Kit</title>
+<style>
+  :root {
+    --bg:      #f5f4f9;
+    --bg2:     #edeaf5;
+    --bg3:     #e4e0f2;
+    --card:    #ffffff;
+    --accent:  #6d4fc2;
+    --accent2: #9b7de8;
+    --accent-light: #ede9fb;
+    --gold:    #8a6a2a;
+    --text:    #1e1a30;
+    --muted:   #6b6583;
+    --border:  rgba(109,79,194,0.15);
+    --shadow:  rgba(109,79,194,0.10);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  /* ── LANG SWITCHER ── */
+  #lang-bar {
+    position: fixed; top: 0; right: 0; z-index: 999;
+    display: flex;
+    background: #fff;
+    border-bottom-left-radius: 8px;
+    border: 1px solid var(--border);
+    border-top: none; border-right: none;
+    overflow: hidden;
+    box-shadow: 0 2px 8px var(--shadow);
+  }
+  #lang-bar button {
+    background: none; border: none; cursor: pointer;
+    padding: 8px 18px; font-size: 12px; letter-spacing: 1.5px;
+    color: var(--muted); font-weight: 700; transition: all .2s;
+  }
+  #lang-bar button.active { background: var(--accent); color: #fff; }
+  #lang-bar button:hover:not(.active) { color: var(--accent); background: var(--accent-light); }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 40px; height: 56px;
+    box-shadow: 0 2px 12px var(--shadow);
+  }
+  nav .nav-logo { font-size: 13px; letter-spacing: 3px; color: var(--muted); font-weight: 700; text-transform: uppercase; }
+  nav .nav-links { display: flex; gap: 28px; }
+  nav .nav-links a { color: var(--muted); text-decoration: none; font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 600; transition: color .2s; }
+  nav .nav-links a:hover { color: var(--accent); }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    background:
+      radial-gradient(ellipse 70% 55% at 50% 35%, rgba(157,130,230,0.22) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 35% at 75% 70%, rgba(120,90,210,0.10) 0%, transparent 60%),
+      linear-gradient(160deg, #f0ecfc 0%, #e8e3f5 50%, #f5f3fb 100%);
+    padding: 100px 24px 60px;
+    text-align: center;
+    position: relative; overflow: hidden;
+  }
+  #hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%236d4fc2' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+  .bi-logo { max-width: 500px; width: 88%; margin-bottom: 32px; filter: drop-shadow(0 6px 32px rgba(109,79,194,0.18)); }
+  .hero-tag {
+    display: inline-block;
+    border: 1px solid rgba(109,79,194,0.3);
+    color: var(--accent);
+    font-size: 11px; letter-spacing: 3px;
+    padding: 6px 20px; border-radius: 20px;
+    margin-bottom: 24px; font-weight: 700;
+    background: rgba(109,79,194,0.07);
+  }
+  .hero-desc { max-width: 580px; color: var(--muted); font-size: 15px; margin-bottom: 40px; }
+  .hero-cta { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 12px 28px; border-radius: 7px;
+    font-size: 13px; font-weight: 700; letter-spacing: 0.8px;
+    text-decoration: none; transition: all .22s; cursor: pointer; border: none;
+  }
+  .btn-primary { background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #fff; box-shadow: 0 4px 16px rgba(109,79,194,0.25); }
+  .btn-primary:hover { opacity: 0.88; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(109,79,194,0.32); }
+  .btn-outline { background: #fff; border: 1.5px solid var(--border); color: var(--text); box-shadow: 0 2px 8px var(--shadow); }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); box-shadow: 0 6px 18px var(--shadow); }
+
+  /* ── SECTIONS ── */
+  section { padding: 80px 24px; }
+  .container { max-width: 1060px; margin: 0 auto; }
+  .section-label { font-size: 11px; letter-spacing: 4px; text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: 12px; }
+  .section-title { font-size: clamp(22px, 4vw, 34px); font-weight: 800; margin-bottom: 40px; line-height: 1.2; color: var(--text); }
+  .divider { width: 48px; height: 3px; background: linear-gradient(90deg, var(--accent), var(--accent2)); border-radius: 2px; margin: 14px 0 38px; }
+
+  /* ── FACT SHEET ── */
+  #factsheet { background: var(--bg2); }
+  .fact-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; }
+  .fact-item {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 10px; padding: 20px 22px;
+    box-shadow: 0 2px 10px var(--shadow);
+    transition: border-color .2s, box-shadow .2s;
+  }
+  .fact-item:hover { border-color: var(--accent); box-shadow: 0 4px 18px rgba(109,79,194,0.14); }
+  .fact-label { font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: 7px; }
+  .fact-value { font-size: 14.5px; font-weight: 600; color: var(--text); }
+  .fact-value a { color: var(--accent); text-decoration: none; }
+  .fact-value a:hover { text-decoration: underline; }
+  .fact-tag {
+    display: inline-block; padding: 3px 10px; border-radius: 5px;
+    background: var(--accent-light); color: var(--accent);
+    font-size: 12px; font-weight: 600; margin: 2px 2px 0 0;
+  }
+
+  /* ── GAME DESC ── */
+  #about { background: var(--bg); }
+  .feature-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 22px; }
+  .feature-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 32px 28px;
+    position: relative; overflow: hidden;
+    box-shadow: 0 2px 12px var(--shadow);
+    transition: border-color .2s, transform .2s, box-shadow .2s;
+  }
+  .feature-card:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 8px 28px rgba(109,79,194,0.14); }
+  .feature-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+  }
+  .feature-icon { font-size: 28px; margin-bottom: 14px; }
+  .feature-title { font-size: 17px; font-weight: 800; margin-bottom: 12px; color: var(--text); }
+  .feature-body { color: var(--muted); font-size: 14px; line-height: 1.85; }
+  .feature-body strong { color: var(--accent); }
+
+  /* ── PRESS MATERIALS ── */
+  #press { background: var(--bg2); }
+  .press-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 14px; }
+  .press-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 10px; padding: 24px;
+    display: flex; flex-direction: column; gap: 10px;
+    box-shadow: 0 2px 10px var(--shadow);
+    transition: border-color .2s, transform .2s, box-shadow .2s;
+  }
+  .press-card:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(109,79,194,0.13); }
+  .press-icon { font-size: 24px; }
+  .press-title { font-size: 14px; font-weight: 700; color: var(--text); }
+  .press-desc { font-size: 13px; color: var(--muted); flex: 1; line-height: 1.6; }
+  .press-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    color: var(--accent); font-size: 12px; font-weight: 700;
+    text-decoration: none; letter-spacing: 0.8px;
+    padding: 8px 16px; border: 1.5px solid var(--border);
+    border-radius: 6px; background: var(--accent-light);
+    transition: all .2s;
+  }
+  .press-link:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .press-notice {
+    font-size: 13px; color: var(--muted); margin-top: 22px;
+    padding: 16px 20px; border: 1.5px dashed rgba(109,79,194,0.2);
+    border-radius: 8px; background: rgba(109,79,194,0.03);
+    line-height: 1.7;
+  }
+  .press-notice strong { color: var(--accent); }
+
+  /* ── ABOUT STUDIO ── */
+  #studio { background: var(--bg); }
+  .about-box {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 14px; padding: 40px 44px;
+    display: grid; grid-template-columns: 1fr 2fr; gap: 48px; align-items: center;
+    box-shadow: 0 4px 20px var(--shadow);
+  }
+  .about-logo-wrap { display: flex; align-items: center; justify-content: center; }
+  .ci-logo { max-width: 200px; width: 100%; }
+  .about-text { color: var(--muted); font-size: 15px; line-height: 1.9; }
+  .about-text strong { color: var(--text); }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--bg2); }
+  .contact-box {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 48px 40px;
+    text-align: center;
+    box-shadow: 0 4px 20px var(--shadow);
+  }
+  .contact-box p { color: var(--muted); font-size: 15px; }
+  .contact-email {
+    font-size: 22px; font-weight: 700; color: var(--accent);
+    text-decoration: none; display: block; margin: 18px 0;
+  }
+  .contact-email:hover { opacity: 0.75; }
+  .links-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-top: 24px; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--bg3); border-top: 1px solid var(--border);
+    padding: 40px 24px; text-align: center;
+  }
+  footer .ci-logo-ft { max-width: 130px; opacity: 0.45; margin-bottom: 14px; }
+  footer p { color: var(--muted); font-size: 12px; letter-spacing: 0.5px; }
+
+  /* ── i18n ── */
+  [data-en], [data-ko] { display: none; }
+  body.lang-ko [data-ko] { display: block; }
+  body.lang-en [data-en] { display: block; }
+  body.lang-ko [data-ko].inline { display: inline; }
+  body.lang-en [data-en].inline { display: inline; }
+
+  @media (max-width: 720px) {
+    nav .nav-links { display: none; }
+    .about-box { grid-template-columns: 1fr; gap: 24px; padding: 28px; }
+    .about-logo-wrap { justify-content: flex-start; }
+    section { padding: 60px 20px; }
+  }
+</style>
+</head>
+<body class="lang-en">
+
+<!-- LANG SWITCHER -->
+<div id="lang-bar">
+  <button onclick="setLang('ko')">KO</button>
+  <button class="active" onclick="setLang('en')">EN</button>
+</div>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-logo">DragonSword : Awakening</span>
+  <div class="nav-links">
+    <a href="#factsheet" data-ko class="inline">팩트시트</a>
+    <a href="#factsheet" data-en class="inline">Fact Sheet</a>
+    <a href="#about" data-ko class="inline">게임 소개</a>
+    <a href="#about" data-en class="inline">About</a>
+    <a href="#press" data-ko class="inline">프레스 자료</a>
+    <a href="#press" data-en class="inline">Press</a>
+    <a href="#studio" data-ko class="inline">개발사</a>
+    <a href="#studio" data-en class="inline">Studio</a>
+    <a href="#contact" data-ko class="inline">문의</a>
+    <a href="#contact" data-en class="inline">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <!-- ★ 실제 BI 로고 이미지로 교체: <img class="bi-logo" src="/assets/img/dragonsword_logo.png" alt="DragonSword: Awakening"> -->
+  <img class="bi-logo" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 300'%3E%3Ctext y='50%25' x='50%25' dominant-baseline='middle' text-anchor='middle' font-size='14' fill='%236d4fc2' letter-spacing='6' font-family='Georgia'%3E[DRAGONSWORD : AWAKENING LOGO]%3C/text%3E%3C/svg%3E" alt="DragonSword: Awakening Logo">
+
+  <div class="hero-tag" data-ko>PRESS KIT 2026</div>
+  <div class="hero-tag" data-en>PRESS KIT 2026</div>
+
+  <p class="hero-desc" data-ko>Steam 출시 예정 &nbsp;·&nbsp; 오픈월드 액션 RPG &nbsp;·&nbsp; PC</p>
+  <p class="hero-desc" data-en>Coming to Steam &nbsp;·&nbsp; Open World Action RPG &nbsp;·&nbsp; PC</p>
+
+  <div class="hero-cta">
+    <a class="btn btn-primary" href="https://store.steampowered.com/app/4570720/" target="_blank" data-ko>🎮 Steam 페이지</a>
+    <a class="btn btn-primary" href="https://store.steampowered.com/app/4570720/" target="_blank" data-en>🎮 Steam Page</a>
+    <a class="btn btn-outline" href="#press" data-ko>📁 프레스 자료 다운로드</a>
+    <a class="btn btn-outline" href="#press" data-en>📁 Download Press Materials</a>
+  </div>
+</section>
+
+<!-- FACT SHEET -->
+<section id="factsheet">
+  <div class="container">
+    <div class="section-label">FACT SHEET</div>
+    <div class="section-title" data-ko>게임 개요</div>
+    <div class="section-title" data-en>Game Overview</div>
+    <div class="divider"></div>
+    <div class="fact-grid">
+
+      <div class="fact-item">
+        <div class="fact-label" data-ko>게임명</div>
+        <div class="fact-label" data-en>Title</div>
+        <div class="fact-value">DragonSword : Awakening</div>
+      </div>
+
+      <div class="fact-item">
+        <div class="fact-label" data-ko>개발사</div>
+        <div class="fact-label" data-en>Developer</div>
+        <div class="fact-value">HOUND13 Inc.</div>
+      </div>
+
+      <div class="fact-item">
+        <div class="fact-label" data-ko>출시일</div>
+        <div class="fact-label" data-en>Release Date</div>
+        <div class="fact-value" data-ko>2026년 7월 중</div>
+        <div class="fact-value" data-en>July 2026</div>
+      </div>
+
+      <div class="fact-item">
+        <div class="fact-label" data-ko>플랫폼</div>
+        <div class="fact-label" data-en>Platform</div>
+        <div class="fact-value"><span class="fact-tag">PC</span><span class="fact-tag">Steam</span></div>
+      </div>
+
+      <div class="fact-item">
+        <div class="fact-label" data-ko>가격</div>
+        <div class="fact-label" data-en>Price</div>
+        <div class="fact-value" data-ko>미정 (프리미엄 패키지)</div>
+        <div class="fact-value" data-en>TBA (Premium Package)</div>
+      </div>
+
+      <div class="fact-item">
+        <div class="fact-label" data-ko>장르</div>
+        <div class="fact-label" data-en>Genre</div>
+        <div class="fact-value">
+          <span class="fact-tag" data-ko>오픈월드</span><span class="fact-tag" data-ko>액션 RPG</span><span class="fact-tag" data-ko>어드벤처</span>
+          <span class="fact-tag" data-en>Open World</span><span class="fact-tag" data-en>Action RPG</span><span class="fact-tag" data-en>Adventure</span>
+        </div>
+      </div>
+
+      <div class="fact-item">
+        <div class="fact-label" data-ko>플레이 방식</div>
+        <div class="fact-label" data-en>Play Mode</div>
+        <div class="fact-value">
+          <span class="fact-tag">PvE</span>
+          <span class="fact-tag" data-ko>싱글플레이</span><span class="fact-tag" data-ko>협동 플레이</span>
+          <span class="fact-tag" data-en>Single Play</span><span class="fact-tag" data-en>Co-op</span>
+        </div>
+      </div>
+
+      <div class="fact-item" style="grid-column: span 2;">
+        <div class="fact-label" data-ko>권장 사양</div>
+        <div class="fact-label" data-en>Recommended Specs</div>
+        <div class="fact-value" style="font-size:13px; line-height:2; color: var(--muted);">
+          Windows 10 &nbsp;·&nbsp; Intel i7-9700F &nbsp;·&nbsp; 16GB RAM<br>
+          NVIDIA GeForce RTX 3060 &nbsp;·&nbsp; DirectX 12 &nbsp;·&nbsp; 60GB+ SSD
+        </div>
+      </div>
+
+      <div class="fact-item">
+        <div class="fact-label">Steam</div>
+        <div class="fact-value"><a href="https://store.steampowered.com/app/4570720/" target="_blank">store.steampowered.com/app/4570720</a></div>
+      </div>
+
+      <div class="fact-item">
+        <div class="fact-label">Discord</div>
+        <div class="fact-value"><a href="https://discord.gg/CzZ5ddkMVg" target="_blank">discord.gg/CzZ5ddkMVg</a></div>
+      </div>
+
+      <div class="fact-item">
+        <div class="fact-label">YouTube</div>
+        <div class="fact-value"><a href="https://www.youtube.com/@DragonSwordAwakening" target="_blank">@DragonSwordAwakening</a></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- GAME ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="section-label">GAME FEATURES</div>
+    <div class="section-title" data-ko>게임 소개</div>
+    <div class="section-title" data-en>About the Game</div>
+    <div class="divider"></div>
+    <div class="feature-cards">
+
+      <div class="feature-card">
+        <div class="feature-icon">🌍</div>
+        <div class="feature-title" data-ko>광활한 '오르비스' 대륙</div>
+        <div class="feature-title" data-en>The Vast Continent of 'Orbis'</div>
+        <div class="feature-body" data-ko>
+          주인공 소년 '류트'가 되어, 60년 만에 부활한 드래곤의 위협에 맞서기 위해 과거의 영웅들을 찾아 나선다. 진정한 영웅 '드래곤소드'로 거듭나는 가슴 벅찬 여정이 펼쳐진다.<br><br>
+          언리얼 엔진 5로 구현된 오르비스 대륙에서 다양한 탈것을 이용한 등반·수영·활공 탐험과, 조리 방법에 따라 결과물이 달라지는 몰입형 요리 시스템 등 생활 콘텐츠를 즐길 수 있다.
+        </div>
+        <div class="feature-body" data-en>
+          Play as the young hero 'Lute' and embark on a journey to find legendary heroes of the past to combat the resurrected Dragon—a threat unseen for 60 years. Experience an epic tale of becoming the true 'DragonSword.'<br><br>
+          Built on Unreal Engine 5, Orbis offers exploration by mount, swimming, and gliding, alongside an immersive cooking system where results vary depending on your chosen method.
+        </div>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">⚔️</div>
+        <div class="feature-title" data-ko>상태이상 태그 액션</div>
+        <div class="feature-title" data-en>Status Effect Tag Action Combat</div>
+        <div class="feature-body" data-ko>
+          하운드13의 액션 노하우가 집약된 전투 시스템. 각기 다른 9종의 상태이상 능력을 지닌 19명의 영웅 중 3명을 선택해 팀을 구성한다.<br><br>
+          적을 밀치고 공중에 띄우는 물리적 액션에 더해, 상태이상을 누적시켜 발동되는 <strong>시그널 스킬</strong>과 <strong>태그 콤보</strong>가 DragonSword만의 차별화된 손맛을 선사한다.
+        </div>
+        <div class="feature-body" data-en>
+          HOUND13's signature action expertise shines through the combat system. Choose 3 heroes from 19 characters, each possessing one of 9 unique status effects, to form your team.<br><br>
+          Beyond physics-driven combat—launching and juggling enemies—<strong>Signal Skills</strong> and <strong>Tag Combos</strong> triggered by accumulated status effects deliver a uniquely satisfying feel.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PRESS MATERIALS -->
+<section id="press">
+  <div class="container">
+    <div class="section-label">PRESS MATERIALS</div>
+    <div class="section-title" data-ko>프레스용 자료</div>
+    <div class="section-title" data-en>Press Downloads</div>
+    <div class="divider"></div>
+
+    <div class="press-grid">
+
+      <div class="press-card">
+        <div class="press-icon">🖼️</div>
+        <div class="press-title" data-ko>스크린샷</div>
+        <div class="press-title" data-en>Screenshots</div>
+        <div class="press-desc" data-ko>고해상도 인게임 스크린샷 모음 (Google Drive)</div>
+        <div class="press-desc" data-en>High-res in-game screenshots (Google Drive)</div>
+        <!-- ★ href를 실제 Google Drive 링크로 교체하세요 -->
+        <a class="press-link" href="REPLACE_SCREENSHOT_LINK" target="_blank">↗ <span data-ko class="inline">다운로드</span><span data-en class="inline">Download</span></a>
+      </div>
+
+      <div class="press-card">
+        <div class="press-icon">🎨</div>
+        <div class="press-title" data-ko>아트워크</div>
+        <div class="press-title" data-en>Artwork</div>
+        <div class="press-desc" data-ko>키아트, 캐릭터 아트 등 공식 아트워크 (Google Drive)</div>
+        <div class="press-desc" data-en>Key art, character art & official artwork (Google Drive)</div>
+        <!-- ★ href를 실제 Google Drive 링크로 교체하세요 -->
+        <a class="press-link" href="REPLACE_ARTWORK_LINK" target="_blank">↗ <span data-ko class="inline">다운로드</span><span data-en class="inline">Download</span></a>
+      </div>
+
+      <div class="press-card">
+        <div class="press-icon">🔷</div>
+        <div class="press-title" data-ko>로고 에셋</div>
+        <div class="press-title" data-en>Logo Assets</div>
+        <div class="press-desc" data-ko>게임 로고, CI 로고 원본 파일 (PNG / SVG / AI) (Google Drive)</div>
+        <div class="press-desc" data-en>Game logo and CI logo source files (PNG / SVG / AI) (Google Drive)</div>
+        <!-- ★ href를 실제 Google Drive 링크로 교체하세요 -->
+        <a class="press-link" href="REPLACE_LOGO_LINK" target="_blank">↗ <span data-ko class="inline">다운로드</span><span data-en class="inline">Download</span></a>
+      </div>
+
+      <div class="press-card">
+        <div class="press-icon">🎬</div>
+        <div class="press-title" data-ko>트레일러</div>
+        <div class="press-title" data-en>Trailer</div>
+        <div class="press-desc" data-ko>공식 트레일러 — YouTube에서 바로 시청</div>
+        <div class="press-desc" data-en>Official trailer — watch directly on YouTube</div>
+        <a class="press-link" href="https://www.youtube.com/@DragonSwordAwakening" target="_blank">↗ <span data-ko class="inline">YouTube에서 보기</span><span data-en class="inline">Watch on YouTube</span></a>
+      </div>
+
+    </div>
+
+    <div class="press-notice" data-ko>
+      📌 모든 프레스용 자료는 Google Drive를 통해 제공됩니다. 링크 접근에 문제가 있거나 추가 자료가 필요하신 경우 <strong>ds@hound13.com</strong>으로 문의해 주세요.
+    </div>
+    <div class="press-notice" data-en>
+      📌 All press materials are provided via Google Drive. If you have trouble accessing any links or require additional assets, please contact <strong>ds@hound13.com</strong>.
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT STUDIO -->
+<section id="studio">
+  <div class="container">
+    <div class="section-label">ABOUT THE DEVELOPER</div>
+    <div class="section-title" data-ko>개발팀 소개</div>
+    <div class="section-title" data-en>About HOUND13</div>
+    <div class="divider"></div>
+    <div class="about-box">
+      <div class="about-logo-wrap">
+        <!-- ★ 실제 CI 로고 이미지로 교체: <img class="ci-logo" src="/assets/img/hound13_ci.png" alt="HOUND13"> -->
+        <img class="ci-logo" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 160'%3E%3Ctext y='50%25' x='50%25' dominant-baseline='middle' text-anchor='middle' font-size='11' fill='%236d4fc2' letter-spacing='4' font-family='Georgia'%3E[HOUND13 CI LOGO]%3C/text%3E%3C/svg%3E" alt="HOUND13">
+      </div>
+      <div>
+        <div class="about-text" data-ko>
+          하운드13은 대한민국 서울에 위치한 액션 게임 전문 개발사입니다.<br><br>
+          전작 &lt;헌드레드 소울&gt;을 통해 인정받은 액션 개발 노하우를 바탕으로, 신작 <strong>DragonSword : Awakening</strong>을 선보이며 글로벌 시장에서 '액션 명가'로서 자리매김하고자 합니다.
+        </div>
+        <div class="about-text" data-en>
+          HOUND13 is a Seoul-based action game studio specializing in high-quality action experiences.<br><br>
+          Building on the acclaimed action expertise demonstrated in <em>Hundred Soul</em>, the team aims to establish itself as a global leader in the action genre with <strong>DragonSword : Awakening</strong>.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="section-label">CONTACT</div>
+    <div class="section-title" data-ko>미디어 문의</div>
+    <div class="section-title" data-en>Press Inquiries</div>
+    <div class="divider"></div>
+    <div class="contact-box">
+      <p data-ko>취재 요청, 인터뷰, 리뷰 코드 등 미디어 관련 모든 문의는 아래로 연락해 주세요.</p>
+      <p data-en>For all press inquiries including coverage requests, interviews, and review codes, please reach out below.</p>
+      <a class="contact-email" href="mailto:ds@hound13.com">ds@hound13.com</a>
+      <div class="links-row">
+        <a class="btn btn-outline" href="https://store.steampowered.com/app/4570720/" target="_blank">Steam</a>
+        <a class="btn btn-outline" href="https://discord.gg/CzZ5ddkMVg" target="_blank">Discord</a>
+        <a class="btn btn-outline" href="https://www.youtube.com/@DragonSwordAwakening" target="_blank">YouTube</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <!-- ★ 실제 CI 로고 이미지로 교체: <img class="ci-logo-ft" src="/assets/img/hound13_ci.png" alt="HOUND13"> -->
+  <img class="ci-logo-ft" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 80'%3E%3Ctext y='50%25' x='50%25' dominant-baseline='middle' text-anchor='middle' font-size='9' fill='%236d4fc2' letter-spacing='3' font-family='Georgia'%3EHOUND13%3C/text%3E%3C/svg%3E" alt="HOUND13">
+  <p>Copyright © 2026 Hound13 Inc. All Rights Reserved.</p>
+  <p style="margin-top:6px; font-size:11px; opacity:0.6;">DragonSword : Awakening is a trademark of HOUND13 Inc.</p>
+</footer>
+
+<script>
+  function setLang(lang) {
+    document.body.className = 'lang-' + lang;
+    document.querySelectorAll('#lang-bar button').forEach((btn, i) => {
+      btn.classList.toggle('active', (i === 0 && lang === 'ko') || (i === 1 && lang === 'en'));
+    });
+    document.documentElement.lang = lang === 'ko' ? 'ko' : 'en';
+  }
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY + 80;
+    document.querySelectorAll('section[id]').forEach(sec => {
+      const links = document.querySelectorAll(`nav a[href="#${sec.id}"]`);
+      const active = y >= sec.offsetTop && y < sec.offsetTop + sec.offsetHeight;
+      links.forEach(l => l.style.color = active ? 'var(--accent)' : '');
+    });
+  });
+</script>
+</body>
+</html>
